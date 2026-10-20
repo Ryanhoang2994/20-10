@@ -68,3 +68,19 @@ body[data-stage="growing"] .intro,body[data-stage="ready"] .intro,body[data-stag
 @media(max-width:360px){.masthead{padding:21px}.controls{padding-left:18px;padding-right:18px}.journey{width:108px}.control-buttons{gap:10px}.quiet-button{font-size:7px}.intro h1{font-size:29px}.invitation h2{font-size:22px}.wish-dialog{padding:31px 22px 20px}.wish-dialog h2{font-size:22px}.card-actions{gap:13px}}
 @media(max-height:650px) and (max-width:899px){.intro{top:15%}.intro-note{display:none}.invitation{bottom:13%}.invitation .eyebrow{display:none}.invitation h2{font-size:21px}.primary-button{padding:10px 17px}.secondary-button{padding:6px 0;min-height:34px}.touch-hint{top:12%;font-size:6px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Full-bleed garden: the greeting floats in the same space as the flowers. */
+.editorial{left:50%;right:auto;top:50%;bottom:auto;transform:translate(-50%,-50%);width:calc(100% - 48px);max-width:610px;text-align:center}
+.intro h1{font-size:clamp(34px,4.5vw,64px)}.intro-note{color:#f3d6e0}.fine-line{margin:25px auto 18px}
+.chapter{left:15%;right:15%;top:44%;text-align:center;white-space:pre-line;text-shadow:0 2px 25px #280d26}
+.invitation{padding:32px 35px 23px;border:1px solid #f8cfdd26;border-radius:14px;background:linear-gradient(135deg,#34142ee0,#411b35b3);backdrop-filter:blur(10px);box-shadow:0 25px 90px #230b243b;max-width:510px}
+.invitation h2{font-size:clamp(30px,3.4vw,47px)}.invitation .eyebrow{margin-bottom:19px}
+.invitation>p:not(.eyebrow){color:#eac8d7;margin-bottom:22px}.primary-button,.secondary-button{margin-left:auto;margin-right:auto}
+.touch-hint{left:10%;width:80%;bottom:112px;top:auto;color:#ffe2ec;text-shadow:0 1px 9px #301025}
+.masthead{background:linear-gradient(#251021a8,transparent);text-shadow:0 1px 10px #2b1125}
+.controls{background:linear-gradient(transparent,#251021d9)}.journey>span,.quiet-button{color:#ffe0eb}
+.vignette{background:linear-gradient(0deg,#1e101e40,transparent 24%,transparent 84%,#170e1825)}
+.intro{text-shadow:0 2px 30px #230f21}.fallback img{object-position:center}
+@media(max-width:899px){.editorial{top:50%;bottom:auto;transform:translate(-50%,-50%);max-width:480px}.invitation>p:not(.eyebrow){display:block}.chapter{top:42%}.touch-hint{top:auto;bottom:115px}.invitation h2 br{display:block}.invitation h2 em{margin:0}}
+@media(max-width:767px){.editorial{width:calc(100% - 44px)}.invitation{padding:29px 20px 18px;max-width:390px}.invitation h2{font-size:29px;line-height:1.4}.invitation .eyebrow{font-size:7px}.intro h1{font-size:38px}.invitation>p:not(.eyebrow){font-size:10px}.touch-hint{bottom:112px;font-size:7px}.chapter{font-size:25px}.fallback img{object-position:center}}
+@media(max-height:650px) and (max-width:899px){.invitation{padding:20px 17px 12px;max-width:390px}.invitation h2{font-size:25px}.invitation>p:not(.eyebrow){margin:9px 0 14px;font-size:9px}.touch-hint{bottom:82px}.intro h1{font-size:32px}}

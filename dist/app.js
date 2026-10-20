@@ -69,7 +69,7 @@ function setReady(){
   $('journey-label').textContent='Một mùa hoa, dành riêng cho bạn.';
   $('progress-fill').style.transform='scaleX(1)';$('progress-track').setAttribute('aria-valuenow','100');
   $('chapter').classList.remove('visible');
-  $('scene').setAttribute('aria-label','Những nhành hoa đào 3D đã nở. Kéo để xoay, chạm để thêm lấp lánh.');
+  $('scene').setAttribute('aria-label','Vùng đất hoa đào 3D đã nở. Kéo để xoay ngắm khu vườn, chạm để thêm lấp lánh.');
 }
 function fallback(){
   isFallback=true;$('loading').hidden=true;$('fallback').hidden=false;$('intro').hidden=true;setReady();
@@ -78,8 +78,8 @@ function updateProgress(p){
   if(p>0&&p<1)document.body.dataset.stage='growing';
   $('progress-fill').style.transform=`scaleX(${p})`;$('progress-track').setAttribute('aria-valuenow',String(Math.round(p*100)));
   if(p>=1)return;
-  $('journey-label').textContent=p<.32?'Những nhành đào đang thức giấc':p<.76?'Từng cánh hoa đang nở vì bạn':'Gom ánh sao, gửi một lời thương';
-  $('chapter').textContent=p<.6?'Một vòng dịu dàng.\nMột mùa hoa mới.':'Mong bạn luôn được\nnâng niu như thế.';
+  $('journey-label').textContent=p<.32?'Vùng đất nhỏ đang thức giấc':p<.76?'Từng cánh hoa đang nở vì bạn':'Gom ánh sao, gửi một lời thương';
+  $('chapter').textContent=p<.6?'Một vòng dịu dàng.\nCả một trời hoa.':'Mong bạn luôn được\nnâng niu như thế.';
   $('chapter').classList.toggle('visible',p>.20&&p<.42||p>.68&&p<.86);
 }
 let lastMotion=reduced.matches;
