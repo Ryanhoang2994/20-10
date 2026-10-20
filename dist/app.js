@@ -37,7 +37,7 @@ $('replay-button').addEventListener('click',()=>{
   $('intro').hidden=false;$('final-invitation').hidden=true;
   $('pause-button').hidden=false;$('skip-button').hidden=false;$('replay-button').hidden=true;
   document.body.dataset.stage='intro';
-  $('scene').setAttribute('aria-label','Cánh đồng hoa đang mọc lên dưới ánh hoàng hôn.');
+  $('scene').setAttribute('aria-label','Camera đi qua cánh đồng, từng vùng hoa mọc lên khi đến gần.');
   garden?.replay();
 });
 $('share-button').addEventListener('click',async()=>{
@@ -68,7 +68,7 @@ function setReady(){
   $('chapter').classList.remove('visible');
   $('scene').setAttribute('aria-label','Cánh đồng hoa vàng, cam và hồng đã nở dưới ánh hoàng hôn.');
   clearTimeout(readyTimer);
-  if(!dialog.open)readyTimer=setTimeout(openWish,reduced.matches?150:1800);
+  if(!dialog.open)readyTimer=setTimeout(openWish,reduced.matches?150:900);
 }
 function fallback(){
   clearTimeout(readyTimer);
@@ -80,7 +80,7 @@ function updateProgress(progress){
   $('progress-fill').style.transform=`scaleX(${progress})`;
   $('progress-track').setAttribute('aria-valuenow',String(Math.round(progress*100)));
   if(progress>=1)return;
-  $('journey-label').textContent=progress<.3?'Từng mầm xanh đang thức giấc':progress<.72?'Một cánh đồng đang nở vì bạn':'Gom chút nắng, gửi chút thương';
+  $('journey-label').textContent=progress<.25?'Đi qua những mầm xanh':progress<.68?'Hoa nở trên từng bước bạn qua':progress<.92?'Đi thêm một chút, yêu thương ở phía trước':'Dừng lại một chút, có thiệp gửi bạn';
   const chapter=$('chapter');
   chapter.textContent=progress<.58?'Một chút nắng. Một chút dịu dàng.':'Và thật nhiều yêu thương, dành cho bạn.';
   chapter.classList.toggle('visible',progress>.22&&progress<.42||progress>.66&&progress<.83);

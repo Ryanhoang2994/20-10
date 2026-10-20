@@ -21,11 +21,11 @@ a{color:inherit;text-decoration:none}
 .wordmark>span{font:400 11px/1 var(--sans);letter-spacing:0;margin-left:8px;color:#63514a}
 .occasion{display:flex;align-items:center;gap:18px;font:400 16px var(--serif);letter-spacing:3px}
 .occasion>span{font:400 8px var(--sans);letter-spacing:2px;color:#63514a;border-left:1px solid #785d4c55;padding-left:18px}
-.intro{position:absolute;top:17%;width:100%;text-align:center;padding:0 24px;pointer-events:none;transition:opacity 1.5s,transform 1.5s;color:#5b443f}
+.intro{position:absolute;top:13%;width:100%;text-align:center;padding:0 24px;pointer-events:none;transition:opacity 1.5s,transform 1.5s;color:#4b3730;text-shadow:0 2px 25px #ffe2bdc0}
 .kicker{font-size:9px;font-weight:500;letter-spacing:3px;color:inherit;margin:0 0 24px}
 h1{font:400 clamp(32px,4vw,57px)/1.28 var(--serif);letter-spacing:-1.6px;margin:0 0 23px}
 h1 em{font:italic 1.05em var(--serif);color:#995745}
-.intro-note{font-size:11px;color:#755c50;line-height:1.8}
+.intro-note{font-size:11px;color:#fff2dc;line-height:1.8;text-shadow:0 1px 9px #3b352a}
 body[data-stage="growing"] .intro,body[data-stage="ready"] .intro{opacity:0;transform:translateY(-18px)}
 .chapter{position:absolute;left:24px;right:24px;top:23%;font:italic clamp(22px,2.7vw,35px)/1.5 var(--serif);color:#715446;text-align:center;pointer-events:none;opacity:0;transform:translateY(12px);transition:opacity 1.2s,transform 1.2s;text-shadow:0 2px 24px #ffe3c1}
 .chapter.visible{opacity:1;transform:translateY(0)}
@@ -53,7 +53,8 @@ body[data-stage="growing"] .intro,body[data-stage="ready"] .intro{opacity:0;tran
 body[data-stage="fallback"] .intro{top:15%;opacity:0}
 .wish-dialog{position:fixed;margin:auto;padding:43px 60px 30px;width:600px;max-width:calc(100% - 36px);max-height:calc(100dvh - 40px);border:1px solid #fff4daab;border-radius:3px;background:#fff8e9f5;color:#594d3d;box-shadow:0 25px 100px #28371d40;text-align:center;overflow:auto}
 .wish-dialog::backdrop{background:#433c202a;backdrop-filter:blur(3px)}
-.wish-dialog[open]{animation:invite-in .6s both}
+.wish-dialog[open]{animation:card-arrive 1.15s cubic-bezier(.16,1,.3,1) both}
+.wish-dialog:before{content:"";position:absolute;inset:11px;border:1px solid #bca36b40;border-radius:1px;pointer-events:none}
 .close-button{position:absolute;top:10px;right:12px;height:44px;width:44px;border:0;background:transparent;font:300 29px var(--sans);color:#887357}
 .close-button:hover{color:#4e5d36}
 .card-flower{margin:0 auto 18px;width:38px;filter:brightness(0) saturate(100%) invert(51%) sepia(60%) saturate(631%) hue-rotate(1deg) brightness(92%) contrast(89%)}
@@ -74,6 +75,7 @@ body[data-stage="fallback"] .intro{top:15%;opacity:0}
 .noscript p{max-width:540px;margin:20px auto}
 @keyframes breathe{to{opacity:.4;transform:translateY(-5px) rotate(12deg)}}
 @keyframes invite-in{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+@keyframes card-arrive{from{opacity:0;transform:perspective(1000px) translateY(65px) rotateX(12deg) scale(.94)}to{opacity:1;transform:perspective(1000px) translateY(0) rotateX(0) scale(1)}}
 @media(max-width:767px){
  .masthead{padding:26px 24px}.wordmark{font-size:25px}.wordmark>span{font-size:10px}.occasion{font-size:15px;letter-spacing:2px}.occasion>span{display:none}
  .intro{top:20%;padding:0 20px}.kicker{font-size:8px;letter-spacing:2.2px;margin-bottom:24px}h1{font-size:clamp(28px,7.5vw,43px);letter-spacing:-.8px;line-height:1.4}.intro-note{font-size:10px;max-width:260px;margin:0 auto}
