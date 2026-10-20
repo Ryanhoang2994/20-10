@@ -1,22 +1,25 @@
-# Nở vì bạn · 20/10
+# Nở vì bạn · Một vùng đất hoa · 20/10
 
-Một hành trình xuyên qua cánh đồng hoa dưới trời hoàng hôn. Camera tiến dọc đường cong dài, từng vùng hoa vàng, cam và hồng mọc lên khi camera đến gần. Cuối hành trình, tấm thiệp 20/10 **dành chung cho mọi cô gái** tự hiện ra.
+Một vùng đất hoa đào 3D trải rộng trên thảm cỏ và những triền đồi, với hoàng hôn, cánh hoa rơi và ánh sáng lấp lánh. Camera lướt theo một vòng tròn dài, hạ dần vào khu vườn trong lúc các nhành đào vươn lên rồi nở hoa. Cảnh chiếm toàn màn hình; khi hoa nở xong, lời chúc ngắn và nút mở thiệp xuất hiện ở giữa.
 
 **Website:** https://gui-ban-mot-doa-hoa-20-10.yvonne821952.chatgpt.site
 
 ## Trải nghiệm
 
-- Khoảng 35 giây từ mở đầu đến khi camera dừng: mở đầu 2,4 giây, di chuyển 30 giây, hoa cuối đường nở thêm 2,6 giây.
-- Camera phối cảnh đi 108 đơn vị trong không gian cảnh, theo đường cong nhẹ; hoa đi từ xa đến gần rồi lướt ra hai bên.
-- Mỗi vùng cây mọc theo khoảng cách đến camera. Thân và lá vươn lên trước, cánh hoa hiện dần sau.
-- Camera tăng tốc, đi đều, giảm tốc về 0 và nâng nhẹ góc nhìn ở cuối đường; thiệp xuất hiện sau khi dừng.
-- Thiệp có hiệu ứng nâng lên và mở vào khung hình. Có thể đóng thiệp để ngắm hoa và chạm để đọc lại.
+- Khoảng 26 giây: mở đầu 1,8 giây, camera di chuyển và hoa nở trong 23 giây, kết cảnh 1,2 giây.
+- Các cụm đào mọc từ mặt đất, với thân, cành, nụ rồi hoa năm cánh.
+- Camera xoay 360°, tiến từ xa vào gần và hạ xuống để thấy rõ chiều sâu của vùng đất.
+- **Mở lời chúc:** mở tấm thiệp dành chung cho mọi cô gái ngày 20/10.
+- **Nhận thêm yêu thương:** lần lượt mở sáu lời chúc khác nhau.
+- **Thêm chút lấp lánh:** tăng ánh sáng của các hạt trong vườn.
+- **Kéo trên cảnh:** xoay góc nhìn. **Chạm trên cảnh:** tạo lấp lánh.
 - Tạm dừng, tiếp tục, bỏ qua hoặc xem lại hành trình.
-- Sao chép/chia sẻ link trang qua trình chia sẻ của thiết bị khi được hỗ trợ.
+- Sao chép/chia sẻ link qua trình chia sẻ của thiết bị khi được hỗ trợ.
 - Không nhập tên, không thu thập dữ liệu, không có tài khoản hay backend.
-- Chế độ giảm chuyển động hiển thị ngay cánh đồng và lời chúc. Thiết bị không có WebGL vẫn xem được lời chúc với ảnh cánh đồng thay thế.
+- Chế độ giảm chuyển động hiển thị ngay cảnh hoàn chỉnh và nút mở thiệp.
+- Thiết bị không có WebGL dùng ảnh chụp cảnh đã dựng; vẫn mở thiệp và nhận thêm lời chúc.
 
-Hình ảnh được tạo bằng imagegen tích hợp theo ảnh tham chiếu cánh đồng hoàng hôn của người dùng. Trải nghiệm dùng **camera 3D và các cụm hoa dạng ảnh có nền trong suốt** với WebGL/Three.js. Cây có vị trí cố định trên mặt đất, xoay hướng mặt ảnh về camera, vươn lên và đung đưa bằng shader. Núi và trời là ảnh hậu cảnh. Đây là cảnh đồ họa dùng chất liệu ảnh AI, không phải video quay thật; không gọi dịch vụ AI khi người xem mở trang.
+Đây là cảnh 3D bằng mã với Three.js/WebGL. Tài nguyên có sẵn trong bộ nguồn; không gọi AI khi mở website.
 
 ## Chạy trên máy
 
@@ -26,50 +29,45 @@ Cần Node.js 20 trở lên:
 node server.mjs
 ```
 
-Mở http://127.0.0.1:4173. Không cần `npm install`; thư viện Three.js, font và ảnh đã lưu trong `dist/assets/`.
-
-Kiểm tra cú pháp:
+Mở http://127.0.0.1:4173. Không cần cài thêm gói; thư viện Three.js, font và ảnh lưu trong `dist/assets/`.
 
 ```sh
 node --check dist/app.js
+node --check dist/garden.js
 ```
 
-## Cấu trúc
+## Cấu trúc và chỉnh sửa
 
-```text
-dist/
-  index.html       Nội dung, bộ điều khiển và lời chúc
-  style.css        Giao diện, responsive, chế độ giảm chuyển động
-  app.js           Điều khiển, lời chúc và chia sẻ
-  garden.js        Đường bay 3D, cây theo vị trí, hiệu ứng mọc khi tới gần
-  assets/          Three.js, font, ảnh dự phòng, icon và giấy phép
-server.mjs         Server xem thử trên máy
-netlify.toml       Publish directory: dist
-vercel.json        Output directory: dist
-ASSETS.md          Nguồn tài nguyên
-```
+- `dist/index.html`: nội dung, nút điều khiển và thiệp.
+- `dist/style.css`: giao diện toàn màn hình, responsive và chế độ giảm chuyển động.
+- `dist/app.js`: mở thiệp, chia sẻ, điều khiển; mảng `wishes` chứa sáu lời chúc.
+- `dist/garden.js`: địa hình, trồng hoa, cành và hoa, camera, ánh sáng, cánh hoa bay.
+- `dist/assets/`: Three.js, font, chất liệu cỏ, ảnh dự phòng, icon và giấy phép.
+- `server.mjs`: server xem thử trên máy.
+- `netlify.toml`, `vercel.json`: cấu hình thư mục xuất bản.
+- `ASSETS.md`, `IMAGE-PROMPTS.md`: nguồn và quy trình tạo tài nguyên.
 
-Trong `dist/garden.js`, chỉnh `DURATION` để đổi thời gian di chuyển, `DISTANCE` để đổi độ dài đường bay, `path()` để đổi đường cong, `SETTLE` để đổi thời gian hoa nở ở điểm đến. Khoảng cách mọc nằm trong vertex shader của `flowerMaterial`. Lời chúc nằm trực tiếp trong `dist/index.html`.
+Trong `garden.js`, `terrainHeight()` tạo triền đất; `shrubs` bố trí 180 cụm đào; `flowersOn()` bố trí bông trên cành; `growMaterial()` xử lý nở trên GPU. `DURATION` và `render()` điều khiển thời gian và đường camera.
+
+## Kỹ thuật
+
+- Three.js 0.186.1, tài nguyên được lưu cục bộ.
+- 8.100 bông trên desktop, 5.400 bông khi khởi tạo trên điện thoại.
+- Hoa gần có cánh cong và nhụy; hoa xa dùng hình học đơn giản hơn, vẫn giữ hình năm cánh.
+- Các cụm hoa được chia theo vị trí và loại bỏ khỏi lượt vẽ khi nằm ngoài góc nhìn.
+- Thân/cành gộp thành một mesh; hoa, nụ và cỏ dùng instancing.
+- 750/400 hạt sáng và 64 cánh hoa rơi; không cập nhật lại hàng nghìn ma trận hoa mỗi khung hình.
+- Camera tăng/giảm tốc mềm; tab ẩn dừng hành trình; giới hạn mật độ điểm ảnh.
+- Hỗ trợ bàn phím và Escape đóng thiệp. Chất lượng/tốc độ WebGL phụ thuộc thiết bị.
 
 ## Hosting
 
 Website tĩnh, thư mục xuất bản **`dist`**, không có bước build.
 
-- **Netlify:** import repository, publish directory `dist`; có sẵn `netlify.toml`.
+- **Netlify:** import repository, publish directory `dist`.
 - **Vercel:** import repository, Framework Preset **Other**, output directory **dist**, không cần build command.
 - **Hosting tĩnh khác:** đưa nội dung `dist/` vào thư mục website.
 
 Sau khi đổi tên miền, cập nhật URL `og:image` trong `dist/index.html`. Nút chia sẻ tự dùng tên miền đang mở.
 
-Netlify/Vercel là cấu hình để thuận tiện chuyển hosting; bản demo hiện tại dùng Sites. Không có đồng bộ tự động giữa GitHub và Sites.
-
-## Kỹ thuật
-
-- Three.js 0.186.1, PerspectiveCamera và InstancedBufferGeometry; cảnh chỉ cần ba lượt vẽ.
-- 15.840 cụm hoa trên toàn vùng cảnh desktop, 9.620 cụm khi khởi tạo trên điện thoại; mỗi cụm gồm nhiều bông. Chỉ các cụm trong tầm nhìn được hiển thị.
-- Shader chạy hiệu ứng mọc theo khoảng cách, gió và phối cảnh mỗi khung hình. Camera dùng tăng/giảm tốc cosine với vận tốc và gia tốc liên tục; cả hai bằng 0 ở hai đầu.
-- Không cập nhật hàng nghìn ma trận cây bằng JavaScript theo từng khung hình.
-- Tab ẩn không làm hành trình tiếp tục chạy; giới hạn mật độ điểm ảnh trên điện thoại.
-- Hỗ trợ bàn phím và Escape đóng lời chúc.
-
-Chất lượng và tốc độ WebGL phụ thuộc thiết bị. Kiểm tra bằng trình duyệt giả lập không thay thế kiểm thử trên mọi điện thoại thực.
+Bản demo hiện tại dùng Sites. Không có đồng bộ tự động giữa GitHub và Sites.

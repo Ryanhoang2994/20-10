@@ -1,5 +1,15 @@
 # Nguồn tài nguyên
 
+## Cảnh hoa đào hiện tại
+
+- Toàn bộ cành gỗ, hoa năm cánh cong, nhụy, nụ và cánh hoa bay được dựng bằng hình học trong `dist/garden.js`. Ánh sáng và hạt lấp lánh được tính bằng Three.js/GLSL.
+- `peach-garden.webp`: ảnh chụp từ chính vùng đất hoa WebGL với thảm cỏ và đồi xa, 1440 × 900, ẩn giao diện trước khi chụp. Dùng làm ảnh dự phòng và ảnh chia sẻ. Không phải ảnh AI tạo riêng hoặc ảnh chụp cây thật.
+- Cảnh dùng chất liệu cỏ `meadow-grass.webp` đã tạo ở phiên bản trước. Tài nguyên được phục vụ cùng website; không gọi dịch vụ AI khi xem.
+
+## Tài nguyên được giữ từ các phiên bản cánh đồng trước
+
+Những vai trò bên dưới mô tả phiên bản cũ. Riêng `meadow-grass.webp` tiếp tục làm chất liệu mặt đất; các ảnh còn lại không được tải trong cảnh hoa đào hiện tại.
+
 - `meadow-real.webp`: cánh đồng cosmos dày dưới hoàng hôn, tạo bằng imagegen tích hợp theo màu sắc, ánh sáng và bố cục ảnh tham chiếu do người dùng gửi. Dùng cho ảnh dự phòng và hình chia sẻ.
 - `meadow-empty.webp`: chỉnh sửa từ ảnh trên bằng imagegen để loại bỏ hoa, giữ góc chụp, trời, mặt trời, đồi núi và rừng; dùng làm hậu cảnh.
 - `cosmos-atlas.webp`: bốn cụm cosmos vàng, cam, hồng và vàng/cam được tạo bằng imagegen, có alpha thực; dùng cho các lớp hoa vươn lên và đung đưa riêng.

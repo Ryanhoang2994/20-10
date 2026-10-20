@@ -1,5 +1,7 @@
 # Image generation provenance · 20/10/2026
 
+The current peach blossom scene is code-generated 3D geometry. `peach-garden.webp` is a screenshot of that rendered scene with UI hidden. No new image-generation prompt was used for the peach scene. The landscape reuses the previously generated meadow-grass.webp as its ground texture. The prompts below document retained assets from earlier meadow/bouquet versions.
+
 Tool: built-in `image_gen`, not the CLI/API fallback. Source reference: the sunset cosmos meadow image supplied by the user in this conversation. Images are illustrative AI visuals, not photographs of a documented location. Converted PNG to WebP with Sharp, without changing the composition or painting pixels. The plant atlas retains alpha transparency.
 
 ## Overhead grass texture (`dist/assets/meadow-grass.webp`)
