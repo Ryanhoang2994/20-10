@@ -1,0 +1,55 @@
+name: Publish flower garden to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "dist/**"
+      - ".github/workflows/static.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Use the GitHub Pages address in the share preview
+        env:
+          PAGES_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          page = Path("dist/index.html")
+          html = page.read_text(encoding="utf-8")
+          html = html.replace(
+              "https://gui-ban-mot-doa-hoa-20-10.yvonne821952.chatgpt.site",
+              os.environ["PAGES_URL"].rstrip("/")
+          )
+          page.write_text(html, encoding="utf-8")
+          PY
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
