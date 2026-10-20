@@ -1,89 +1,70 @@
 @charset "UTF-8";
-:root{color-scheme:light;--night:#f6c2a0;--cream:#fff7e6;--soft:#e1e5cd;--pink:#f5d49e;--sans:"Be Vietnam Pro",Arial,sans-serif;--serif:"Lora",Georgia,serif}
+:root{color-scheme:dark;--cream:#fff3e9;--pink:#f5b7cb;--muted:#ceb7bf;--serif:"Lora",Georgia,serif;--sans:"Be Vietnam Pro",Arial,sans-serif}
 *{box-sizing:border-box}
-body{margin:0;color:var(--cream);background:var(--night);font:400 13px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden}
-button,a{-webkit-tap-highlight-color:transparent}
-button,input{font:inherit}
-button{cursor:pointer}
-button:disabled{opacity:.35;cursor:wait}
-button:focus-visible,a:focus-visible{outline:2px solid var(--pink);outline-offset:7px}
-button{color:inherit}
-a{color:inherit;text-decoration:none}
-[hidden]{display:none!important}
-::selection{background:#cfa0b7;color:#071914}
-.experience{position:relative;min-height:100dvh;height:100dvh;overflow:hidden;isolation:isolate}
-.scene,.scene canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.scene{z-index:-3;background:radial-gradient(ellipse at 37% 36%,#ffe1b6aa 0%,transparent 45%),linear-gradient(180deg,#b0b8c8 0%,#e8b6aa 20%,#ffc69d 40%,#f5c6a7 55%,#8a9465 70%,#536739 100%)}
-.scene canvas{outline:0}
-.atmosphere{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,#fce6d012 0%,transparent 34%,transparent 67%,#152a16b0 100%)}
-.masthead{position:absolute;z-index:4;top:0;left:0;right:0;padding:33px 48px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:#594d4a}
-.wordmark{font:italic 28px/1 var(--serif);letter-spacing:-1.4px;white-space:nowrap}
-.wordmark>span{font:400 11px/1 var(--sans);letter-spacing:0;margin-left:8px;color:#63514a}
-.occasion{display:flex;align-items:center;gap:18px;font:400 16px var(--serif);letter-spacing:3px}
-.occasion>span{font:400 8px var(--sans);letter-spacing:2px;color:#63514a;border-left:1px solid #785d4c55;padding-left:18px}
-.intro{position:absolute;top:13%;width:100%;text-align:center;padding:0 24px;pointer-events:none;transition:opacity 1.5s,transform 1.5s;color:#4b3730;text-shadow:0 2px 25px #ffe2bdc0}
-.kicker{font-size:9px;font-weight:500;letter-spacing:3px;color:inherit;margin:0 0 24px}
-h1{font:400 clamp(32px,4vw,57px)/1.28 var(--serif);letter-spacing:-1.6px;margin:0 0 23px}
-h1 em{font:italic 1.05em var(--serif);color:#995745}
-.intro-note{font-size:11px;color:#fff2dc;line-height:1.8;text-shadow:0 1px 9px #3b352a}
-body[data-stage="growing"] .intro,body[data-stage="ready"] .intro{opacity:0;transform:translateY(-18px)}
-.chapter{position:absolute;left:24px;right:24px;top:23%;font:italic clamp(22px,2.7vw,35px)/1.5 var(--serif);color:#715446;text-align:center;pointer-events:none;opacity:0;transform:translateY(12px);transition:opacity 1.2s,transform 1.2s;text-shadow:0 2px 24px #ffe3c1}
-.chapter.visible{opacity:1;transform:translateY(0)}
-.chapter.right{left:auto;right:7.5%;text-align:right}
-.final-invitation{position:absolute;bottom:17%;left:50%;transform:translateX(-50%);width:90%;text-align:center;animation:invite-in 1.5s both;text-shadow:0 2px 20px #203716,0 1px 4px #263818}
-.final-invitation>.kicker{font-size:8px;letter-spacing:2.5px;margin-bottom:13px}
-.bloom-button{border:0;background:transparent;font:italic 35px/1.4 var(--serif);padding:10px 24px;color:#fff3d6;transition:color .25s;text-shadow:inherit}
-.bloom-button>span{display:block;font:400 10px/1.7 var(--sans);letter-spacing:.5px;color:#fff3d6;margin-top:7px}
-.bloom-button>span>span{padding-left:8px}
-.bloom-button:hover{color:white}
-.controls{position:absolute;bottom:0;left:0;right:0;z-index:4;display:flex;align-items:flex-end;justify-content:space-between;padding:30px 48px 35px;gap:28px}
-.journey{width:260px}
-.journey>span{display:block;color:#f3ecd5;font-size:9px;letter-spacing:.4px;min-height:17px;margin-bottom:12px}
-.progress-track{height:1px;background:#c1d5c026;overflow:hidden}
-.progress-track>span{display:block;height:100%;width:100%;background:#c9aaa8;transform:scaleX(0);transform-origin:left}
-.control-buttons{display:flex;gap:25px;align-items:center}
-.quiet-button{background:transparent;border:0;padding:9px 0;color:#fff2d7;font-size:10px;white-space:nowrap;min-height:44px}
-.quiet-button:hover{color:#fff0e8}
-.quiet-button>span{margin-left:9px}
-.loading{position:absolute;z-index:5;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;background:var(--night);color:#6e5345;font-size:11px;transition:opacity .8s}
-.loading.loaded{opacity:0;pointer-events:none}
-.loading-seed{height:18px;width:12px;border-radius:80% 0 80% 0;background:#8f8958;box-shadow:0 0 25px #c8b3a944;animation:breathe 1.5s infinite alternate}
-.fallback{position:absolute;inset:0;z-index:-2}
-.fallback img{width:100%;height:100%;object-fit:cover}
-body[data-stage="fallback"] .intro{top:15%;opacity:0}
-.wish-dialog{position:fixed;margin:auto;padding:43px 60px 30px;width:600px;max-width:calc(100% - 36px);max-height:calc(100dvh - 40px);border:1px solid #fff4daab;border-radius:3px;background:#fff8e9f5;color:#594d3d;box-shadow:0 25px 100px #28371d40;text-align:center;overflow:auto}
-.wish-dialog::backdrop{background:#433c202a;backdrop-filter:blur(3px)}
-.wish-dialog[open]{animation:card-arrive 1.15s cubic-bezier(.16,1,.3,1) both}
-.wish-dialog:before{content:"";position:absolute;inset:11px;border:1px solid #bca36b40;border-radius:1px;pointer-events:none}
-.close-button{position:absolute;top:10px;right:12px;height:44px;width:44px;border:0;background:transparent;font:300 29px var(--sans);color:#887357}
-.close-button:hover{color:#4e5d36}
-.card-flower{margin:0 auto 18px;width:38px;filter:brightness(0) saturate(100%) invert(51%) sepia(60%) saturate(631%) hue-rotate(1deg) brightness(92%) contrast(89%)}
-.card-flower img{display:block}
-.wish-dialog>.kicker{font-size:8px;letter-spacing:1.7px;margin-bottom:20px}
-.wish-dialog h2{font:400 28px/1.5 var(--serif);letter-spacing:-.5px;margin:0 0 25px}
-.wish-dialog h2 em{font-weight:400;color:#a47438}
-.wish-body{color:#74654e;font-size:12px;line-height:1.95}
-.wish-body p{margin:0 0 17px}
-.wish-signature{font:italic 16px/1.7 var(--serif);color:#92713d;margin:23px 0}
-.share-button{border:1px solid #b3a17b6b;background:#6c7943;border-radius:2px;padding:13px 20px;font-size:10px;transition:background .2s;min-height:46px;color:#fff8e9}
-.share-button:hover{background:#526235}
-.share-button span{padding-left:18px}
-.share-status{font-size:10px;line-height:1.6;color:#6d714d;min-height:16px;margin:12px 0 0}
-.manual-link{width:100%;padding:12px;background:#071914;border:1px solid #607b67;color:white;font-size:12px}
-.noscript{position:fixed;z-index:10;inset:0;background:#071914;display:grid;align-content:center;padding:30px;max-width:100%;text-align:center}
-.noscript h1{font-size:30px}
-.noscript p{max-width:540px;margin:20px auto}
-@keyframes breathe{to{opacity:.4;transform:translateY(-5px) rotate(12deg)}}
-@keyframes invite-in{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
-@keyframes card-arrive{from{opacity:0;transform:perspective(1000px) translateY(65px) rotateX(12deg) scale(.94)}to{opacity:1;transform:perspective(1000px) translateY(0) rotateX(0) scale(1)}}
-@media(max-width:767px){
- .masthead{padding:26px 24px}.wordmark{font-size:25px}.wordmark>span{font-size:10px}.occasion{font-size:15px;letter-spacing:2px}.occasion>span{display:none}
- .intro{top:20%;padding:0 20px}.kicker{font-size:8px;letter-spacing:2.2px;margin-bottom:24px}h1{font-size:clamp(28px,7.5vw,43px);letter-spacing:-.8px;line-height:1.4}.intro-note{font-size:10px;max-width:260px;margin:0 auto}
- .chapter,.chapter.right{left:24px;right:24px;top:19%;font-size:25px;text-align:center;max-width:none}
- .controls{padding:23px 24px max(25px,env(safe-area-inset-bottom));gap:20px;align-items:flex-end}.journey{width:145px}.journey>span{font-size:8px;line-height:1.65;max-width:150px;margin-bottom:10px}.control-buttons{gap:15px}.quiet-button{font-size:9px}.quiet-button>span{margin-left:5px}
- .final-invitation{bottom:18%}.final-invitation>.kicker{font-size:7px;letter-spacing:1.8px}.bloom-button{font-size:27px}.bloom-button>span{font-size:9px}
- .wish-dialog{padding:43px 25px 25px;border-radius:12px;max-width:calc(100% - 28px)}.wish-dialog h2{font-size:25px}.wish-dialog>.kicker{font-size:7px;letter-spacing:1.15px}.wish-body{font-size:11px;line-height:1.9}.wish-signature{font-size:14px}.card-flower{margin-bottom:18px}.close-button{top:7px;right:7px}
+body{margin:0;background:#29141f;color:var(--cream);font:400 13px/1.7 var(--sans);overflow:hidden;-webkit-font-smoothing:antialiased}
+button,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer;color:inherit}a{color:inherit;text-decoration:none}button:disabled{opacity:.35;cursor:wait}
+button:focus-visible,a:focus-visible{outline:2px solid #f6bece;outline-offset:5px}
+[hidden]{display:none!important}::selection{background:#e9a9c5;color:#35202a}
+.experience{position:relative;height:100dvh;min-height:480px;overflow:hidden;isolation:isolate}
+.scene,.scene canvas,.fallback{position:absolute;inset:0;width:100%;height:100%}.scene{z-index:-3}.scene canvas{display:block;touch-action:none;cursor:grab}.scene canvas:active{cursor:grabbing}
+.vignette{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(0deg,#1e101e70,transparent 23%,transparent 85%,#170e181f)}
+.masthead{position:absolute;top:0;left:0;right:0;padding:30px 48px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.wordmark{font:italic 30px/1 var(--serif);letter-spacing:-1.5px}.wordmark span{font:400 11px var(--sans);letter-spacing:0;margin-left:9px;color:var(--muted)}
+.occasion{display:flex;align-items:center;gap:19px;font:400 17px var(--serif);letter-spacing:3px}.occasion span{font:400 8px var(--sans);letter-spacing:1.5px;border-left:1px solid #c4a9a84a;padding-left:18px;color:var(--muted)}
+.editorial{position:absolute;left:67%;right:5%;top:50%;transform:translateY(-50%);max-width:380px}
+.eyebrow{font-size:8px;letter-spacing:2.3px;color:#e1b2b9;margin:0 0 24px;font-weight:500}
+h1,.invitation h2{font:400 clamp(36px,3.8vw,57px)/1.25 var(--serif);letter-spacing:-1.5px;margin:0 0 25px}
+h1 em,h2 em{font-weight:400;color:var(--pink)}
+.intro{transition:opacity 1.3s,translate 1.3s;pointer-events:none}.intro-note{color:var(--muted);font-size:11px;line-height:1.9}
+.fine-line{display:block;width:35px;height:1px;background:#bc869172;margin:26px 0 18px}.small-note{font-size:8px;color:#b69aa5}
+body[data-stage="growing"] .intro,body[data-stage="ready"] .intro,body[data-stage="fallback"] .intro{opacity:0;translate:0 -12px}
+.chapter{position:absolute;top:42%;left:68%;right:6%;font:italic 27px/1.6 var(--serif);color:#f5cad6;opacity:0;translate:0 12px;transition:opacity 1.1s,translate 1.1s;pointer-events:none}
+.chapter.visible{opacity:1;translate:0 0}
+.invitation{animation:arrive 1.1s both}.invitation h2{font-size:clamp(34px,3.2vw,48px);margin-bottom:19px}.invitation>p:not(.eyebrow){font-size:11px;color:var(--muted);line-height:1.9;margin-bottom:25px}
+.primary-button{width:100%;max-width:270px;padding:16px 21px;border:1px solid #f9d0dd;background:#f3c1cf;color:#482631;display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:11px;border-radius:3px;box-shadow:0 7px 30px #e68cb716;transition:background .2s,transform .2s}
+.primary-button:hover{background:#ffdae6;transform:translateY(-2px)}.primary-button:active{transform:translateY(0)}
+.secondary-button{display:block;border:0;background:transparent;padding:13px 0;font-size:10px;color:#efc1d1;min-height:44px}.secondary-button span{padding-right:8px}
+.touch-hint{position:absolute;bottom:17%;left:6%;width:59%;text-align:center;color:#bca0ad;font-size:8px;letter-spacing:.4px;pointer-events:none;animation:arrive 1s both}
+.controls{position:absolute;bottom:0;left:0;right:0;padding:25px 48px 30px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+.journey{width:250px}.journey>span{font-size:8px;color:#d3b3c0;display:block;margin-bottom:12px;min-height:14px}
+.progress-track{height:1px;background:#c2a2b329;overflow:hidden}.progress-track>span{display:block;height:100%;width:100%;background:#f3bdce;transform:scaleX(0);transform-origin:left}
+.control-buttons{display:flex;gap:24px;align-items:center}.quiet-button{background:transparent;border:0;padding:10px 0;min-height:44px;color:#dec2ce;font-size:9px;white-space:nowrap}.quiet-button span{padding-left:7px}.quiet-button:hover{color:white}
+.loading{position:absolute;z-index:5;inset:0;background:#29141f;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;color:#dfb0c1;font-size:11px}.loading>span{font-size:40px;animation:glimmer 1.5s infinite alternate}
+.fallback{z-index:-2}.fallback img{width:100%;height:100%;object-fit:cover}
+.toast{position:absolute;left:50%;bottom:100px;transform:translateX(-50%);width:max-content;max-width:calc(100% - 40px);text-align:center;padding:12px 20px;background:#3d2538e8;border:1px solid #d6a4b53b;border-radius:5px;color:#ffe0eb;font-size:11px;opacity:0;pointer-events:none;transition:opacity .35s;z-index:6}.toast.visible{opacity:1}
+.wish-dialog{color-scheme:light;position:fixed;margin:auto;width:560px;max-width:calc(100% - 32px);max-height:calc(100dvh - 32px);padding:34px 46px 24px;border:1px solid #ffe9ee;border-radius:8px;background:#fff7f2;color:#5b3e48;box-shadow:0 30px 100px #180a1c80;text-align:center;overflow:auto}
+.wish-dialog:before{content:"";position:absolute;inset:11px;border:1px solid #dca8b52c;border-radius:2px;pointer-events:none}
+.wish-dialog::backdrop{background:#1b0b1a65;backdrop-filter:blur(6px)}.wish-dialog[open]{animation:card-arrive 1s cubic-bezier(.16,1,.3,1) both}
+.close-button{position:absolute;top:9px;right:9px;width:40px;height:40px;border:0;background:transparent;color:#8e6574;font-size:27px}
+.card-mark{font-size:38px;line-height:1.2;color:#be6582;margin:1px 0 17px}.wish-dialog>.eyebrow{font-size:7px;color:#9e6c7c;letter-spacing:2px;margin-bottom:19px}
+.wish-dialog h2{font:400 28px/1.45 var(--serif);letter-spacing:-.6px;margin:0 0 20px}.wish-dialog h2 em{color:#ad5c7a}
+.wish-body{font-size:11px;line-height:1.95;color:#856876}.wish-body p{margin:0 0 15px}
+.extra-wish{min-height:52px;font:italic 18px/1.65 var(--serif);color:#9c5672;margin:22px 0;white-space:pre-line}
+.extra-wish.changing{animation:arrive .55s both}
+.gift-button{background:#92516d;color:#fff5f9;border:1px solid #a26980;border-radius:4px;padding:13px 19px;min-height:46px;font-size:10px;transition:background .2s}.gift-button:hover{background:#783d5a}.gift-button span{padding-left:16px}
+.card-actions{margin:17px 0 0;display:flex;align-items:center;justify-content:center;gap:22px}.card-actions button{background:transparent;border:0;color:#976c80;font-size:9px;padding:10px 0;min-height:44px}.card-actions button:hover{color:#60374c}
+.share-status{font-size:9px;color:#977687;min-height:13px;margin:5px 0 0}.manual-link{width:100%;font-size:11px;padding:10px;border:1px solid #cea4b4;border-radius:3px;color:#613d4c;background:#fff}
+.noscript{position:fixed;z-index:20;inset:0;display:grid;align-content:center;text-align:center;padding:30px;background:#29141f}.noscript h1{font-size:36px}.noscript p{max-width:500px;margin:18px auto}
+@keyframes arrive{from{opacity:0;translate:0 16px}to{opacity:1;translate:0 0}}
+@keyframes card-arrive{from{opacity:0;transform:perspective(1100px) translateY(55px) rotateX(10deg) scale(.94)}to{opacity:1;transform:perspective(1100px) translateY(0) rotateX(0) scale(1)}}
+@keyframes glimmer{to{opacity:.35;transform:scale(.8) rotate(20deg)}}
+@media(max-width:899px){
+ .editorial{left:50%;right:auto;top:18%;transform:translateX(-50%);width:90%;max-width:520px;text-align:center}
+ .intro h1{font-size:clamp(32px,6vw,48px);line-height:1.25}.intro h1 br:nth-of-type(2){display:none}.intro-note{font-size:10px}.fine-line,.small-note{display:none}
+ .chapter{left:15%;right:15%;top:16%;text-align:center;font-size:25px}
+ .invitation{top:auto;bottom:14%;width:90%;max-width:430px}.invitation .eyebrow{margin-bottom:10px}.invitation h2{font-size:29px;line-height:1.35;margin-bottom:13px}.invitation h2 br{display:none}.invitation h2 em{margin-right:5px}
+ .invitation>p:not(.eyebrow){display:none}.primary-button{margin:0 auto;max-width:245px;padding:13px 18px}.secondary-button{margin:auto;font-size:9px;padding:9px 0}
+ .touch-hint{left:10%;width:80%;bottom:auto;top:13%;font-size:7px}
 }
-@media(max-width:360px){.controls{padding-left:18px;padding-right:18px;gap:12px}.control-buttons{gap:10px}.journey{width:120px}.quiet-button{font-size:8px}.masthead{padding:24px 20px}.wish-dialog h2{font-size:22px}.wish-dialog{padding-left:22px;padding-right:22px}}
-@media(max-height:600px) and (min-width:768px){.masthead{padding-top:22px}.intro{top:20%}h1{font-size:34px}.final-invitation{bottom:13%}.controls{padding-bottom:20px}.bloom-button{font-size:27px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.intro{opacity:0}.loading-seed{animation:none}}
+@media(max-width:767px){
+ .masthead{padding:24px}.wordmark{font-size:27px}.occasion{font-size:15px}.occasion span{display:none}
+ .intro{top:16%}.eyebrow{font-size:7px;letter-spacing:2px;margin-bottom:17px}.intro h1{font-size:34px}.intro-note{margin-top:16px}
+ .controls{padding:18px 24px max(20px,env(safe-area-inset-bottom));gap:15px}.journey{width:135px}.journey>span{font-size:7px;line-height:1.7;min-height:24px;margin-bottom:7px}.control-buttons{gap:14px}.quiet-button{font-size:8px}
+ .invitation{bottom:12%}.invitation h2{font-size:25px}.invitation .eyebrow{font-size:6px;letter-spacing:1.8px}
+ .wish-dialog{padding:35px 25px 21px}.wish-dialog h2{font-size:25px}.wish-body{font-size:10px}.extra-wish{font-size:16px;margin:18px 0}.card-mark{font-size:32px;margin-bottom:13px}.card-actions{gap:19px}.card-actions button{font-size:8px}
+ .toast{font-size:10px;bottom:auto;top:74px}
+ .fallback img{object-position:37% center}
+}
+@media(max-width:360px){.masthead{padding:21px}.controls{padding-left:18px;padding-right:18px}.journey{width:108px}.control-buttons{gap:10px}.quiet-button{font-size:7px}.intro h1{font-size:29px}.invitation h2{font-size:22px}.wish-dialog{padding:31px 22px 20px}.wish-dialog h2{font-size:22px}.card-actions{gap:13px}}
+@media(max-height:650px) and (max-width:899px){.intro{top:15%}.intro-note{display:none}.invitation{bottom:13%}.invitation .eyebrow{display:none}.invitation h2{font-size:21px}.primary-button{padding:10px 17px}.secondary-button{padding:6px 0;min-height:34px}.touch-hint{top:12%;font-size:6px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
