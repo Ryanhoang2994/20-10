@@ -1,4 +1,4 @@
-# Nở vì bạn · Một vùng đất hoa · 20/10
+# Nở vì em · Một vùng đất hoa · 20/10
 
 Một vùng đất hoa đào 3D trải rộng trên thảm cỏ và những triền đồi, với hoàng hôn, cánh hoa rơi và ánh sáng lấp lánh. Camera bay thấp theo một lối uốn lượn giữa các khóm hoa dày. Các nhành đào vươn lên rồi nở theo thời điểm camera đến từng vùng; lớp hoa thấp lấp các khoảng trống bên dưới tán. Cảnh chiếm toàn màn hình; khi hoa nở xong, lời chúc ngắn và nút mở thiệp xuất hiện ở giữa.
 
@@ -9,11 +9,11 @@ Một vùng đất hoa đào 3D trải rộng trên thảm cỏ và những tri�
 - Khoảng 32 giây: mở đầu 1,8 giây, camera di chuyển và hoa nở trong 28 giây, dừng cảnh 2 giây rồi mới hiện lời chúc.
 - Các cụm đào mọc từ mặt đất, với thân, cành, nụ rồi hoa năm cánh.
 - Camera đi theo đường cong giữa các khóm, giữ độ cao khoảng 1,38 m trên địa hình, rồi nâng nhẹ đến 1,75 m ở cuối. Tốc độ về 0 trước khi hiện thiệp. Không có chữ lời chúc che cảnh trong lúc bay.
-- **Mở lời chúc:** mở tấm thiệp dành chung cho mọi cô gái ngày 20/10.
+- **Chạm nhận yêu thương:** mở tấm thiệp 20/10 dành cho mọi cô gái, với cách gọi thân mật “em”.
 - **Nhận thêm yêu thương:** lần lượt mở sáu lời chúc khác nhau.
 - **Thêm chút lấp lánh:** tăng ánh sáng của các hạt trong vườn.
 - **Kéo trên cảnh:** xoay góc nhìn. **Chạm trên cảnh:** tạo lấp lánh.
-- Tạm dừng, tiếp tục, bỏ qua hoặc xem lại hành trình.
+- Màn hình ngắm hoa không có thanh điều khiển hoặc dòng hướng dẫn ở đáy. Nút xem lại hành trình nằm trong thiệp.
 - Sao chép/chia sẻ link qua trình chia sẻ của thiết bị khi được hỗ trợ.
 - Không nhập tên, không thu thập dữ liệu, không có tài khoản hay backend.
 - Chế độ giảm chuyển động hiển thị ngay cảnh hoàn chỉnh và nút mở thiệp.
