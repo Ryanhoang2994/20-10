@@ -84,3 +84,10 @@ body[data-stage="growing"] .intro,body[data-stage="ready"] .intro,body[data-stag
 @media(max-width:899px){.editorial{top:50%;bottom:auto;transform:translate(-50%,-50%);max-width:480px}.invitation>p:not(.eyebrow){display:block}.chapter{top:42%}.touch-hint{top:auto;bottom:115px}.invitation h2 br{display:block}.invitation h2 em{margin:0}}
 @media(max-width:767px){.editorial{width:calc(100% - 44px)}.invitation{padding:29px 20px 18px;max-width:390px}.invitation h2{font-size:29px;line-height:1.4}.invitation .eyebrow{font-size:7px}.intro h1{font-size:38px}.invitation>p:not(.eyebrow){font-size:10px}.touch-hint{bottom:112px;font-size:7px}.chapter{font-size:25px}.fallback img{object-position:center}}
 @media(max-height:650px) and (max-width:899px){.invitation{padding:20px 17px 12px;max-width:390px}.invitation h2{font-size:25px}.invitation>p:not(.eyebrow){margin:9px 0 14px;font-size:9px}.touch-hint{bottom:82px}.intro h1{font-size:32px}}
+
+/* A soft halo carries the garden's starlight into the greeting. */
+.invitation{border-color:#ffd8e563;box-shadow:0 0 45px #f8b9db35,0 20px 85px #42153065}
+.primary-button{position:relative;overflow:hidden;border-color:#ffe7e5;box-shadow:0 0 28px #ffb7ce38,0 5px 20px #e68cb724}
+.primary-button::after{content:"";position:absolute;inset:-50% -80%;pointer-events:none;background:linear-gradient(110deg,transparent 40%,#fff8e865 49%,transparent 58%);transform:translateX(-65%);animation:peach-shimmer 7s ease-in-out infinite}
+.primary-button>span{position:relative;z-index:1}
+@keyframes peach-shimmer{0%,48%{transform:translateX(-65%)}75%,100%{transform:translateX(65%)}}
