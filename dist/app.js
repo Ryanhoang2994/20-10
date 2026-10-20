@@ -1,4 +1,4 @@
-import {createPeachGarden} from './garden.js';
+import {createCosmosGarden} from './garden.js';
 const $=id=>document.getElementById(id);
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const dialog=$('wish-dialog');
@@ -41,7 +41,7 @@ $('share-button').addEventListener('click',async()=>{
   const link=new URL(location.href);link.hash='';link.search='';
   try{
     if(navigator.share){
-      await navigator.share({title:'Nở vì em · Chúc mừng 20/10',text:'Một mùa hoa đào và những lời thương dành cho em.',url:link.href});
+      await navigator.share({title:'Nở vì em · Chúc mừng 20/10',text:'Một mùa hoa cosmos và những lời thương dành cho em.',url:link.href});
       $('share-status').textContent='Yêu thương đã sẵn sàng để gửi đi.';
     }else{
       await navigator.clipboard.writeText(link.href);
@@ -60,7 +60,7 @@ function setReady(){
   $('card-replay').hidden=reduced.matches||isFallback;
   $('sparkle-button').hidden=reduced.matches||isFallback;
   $('chapter').classList.remove('visible');
-  $('scene').setAttribute('aria-label','Vùng đất hoa đào 3D đã nở. Kéo để xoay ngắm khu vườn, chạm để thêm lấp lánh.');
+  $('scene').setAttribute('aria-label','Cánh đồng hoa cosmos hồng đã nở. Kéo để xoay ngắm khu vườn, chạm để thêm lấp lánh.');
 }
 function fallback(){
   isFallback=true;$('loading').hidden=true;$('fallback').hidden=false;$('intro').hidden=true;setReady();
@@ -79,7 +79,7 @@ function syncMotion(){
 reduced.addEventListener('change',syncMotion);
 // Some embedded Chromium versions update matches before delivering change.
 setInterval(syncMotion,500);
-createPeachGarden({reduced,onReady:setReady,onProgress:updateProgress,onFallback:fallback,
+createCosmosGarden({reduced,onReady:setReady,onProgress:updateProgress,onFallback:fallback,
   onTouch:()=>toast('Một chút lấp lánh vừa dành cho em.')}).then(result=>{
   garden=result;$('loading').hidden=true;document.body.dataset.stage='intro';
   garden.start();if(dialog.open)garden.setPaused(true);
