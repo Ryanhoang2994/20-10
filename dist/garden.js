@@ -44,7 +44,7 @@ export async function createPeachGarden({reduced,onReady,onProgress,onFallback,o
   const flowerData=[];
   function stem(points,radius,start,duration){
     const curve=new T.CubicBezierCurve3(...points);
-    const tube=new T.TubeGeometry(curve,12,radius,6,false).toNonIndexed();
+    const tube=new T.TubeGeometry(curve,8,radius,4,false).toNonIndexed();
     const pos=tube.getAttribute('position'),normal=tube.getAttribute('normal'),uv=tube.getAttribute('uv');
     for(let i=0;i<pos.count;i++){
       const t=uv.getX(i),center=curve.getPoint(t);
@@ -67,7 +67,7 @@ export async function createPeachGarden({reduced,onReady,onProgress,onFallback,o
       normal.add(V((rand()-.5)*.7,(rand()-.5)*.7,(rand()-.5)*.7)).normalize();
       const q=new T.Quaternion().setFromUnitVectors(V(0,0,1),normal);
       q.multiply(new T.Quaternion().setFromAxisAngle(V(0,0,1),rand()*Math.PI*2));
-      flowerData.push({center,q,size:.48+rand()*.32,start:start+t*.08+rand()*.07,hue:.94+rand()*.035});
+      flowerData.push({center,q,size:.57+rand()*.30,start:start+t*.035+rand()*.025,hue:.94+rand()*.035});
     }
   }
   // A planted landscape: every shrub is rooted on the same rolling terrain.
@@ -87,28 +87,53 @@ export async function createPeachGarden({reduced,onReady,onProgress,onFallback,o
   scene.add(ground);
   const sun=new T.Mesh(new T.SphereGeometry(2.5,24,16),new T.MeshBasicMaterial({color:0xffdfb1,fog:false}));
   sun.position.set(-40,16,-65);scene.add(sun);
-  const shrubs=[];
-  for(let z=-7;z<=7;z++)for(let x=-7;x<=7;x++){
-    const px=x*3.7+(rand()-.5)*2.1,pz=z*3.7+(rand()-.5)*2.1;
-    if(Math.hypot(px,pz)>28)continue;
-    shrubs.push({x:px,z:pz,height:1.1+rand()*1.4,phase:rand()});
+  // A ground-following route threads through the dense plants instead of orbiting above them.
+  const flightPath=new T.CatmullRomCurve3([
+    V(-16,0,21),V(-14,0,14),V(-7,0,9),V(1,0,7),V(7,0,1),
+    V(5,0,-8),V(-2,0,-15),V(-11,0,-12),V(-12,0,-4),V(-5,0,1),V(3,0,-1)
+  ],false,'centripetal');
+  const routeSamples=Array.from({length:241},(_,i)=>({point:flightPath.getPointAt(i/240),u:i/240}));
+  const travelAt=t=>{t=Math.max(0,Math.min(1,t));return t-Math.sin(t*Math.PI*2)/(Math.PI*2)};
+  function timeAtTravel(u){
+    let low=0,high=1;
+    for(let i=0;i<14;i++){const mid=(low+high)/2;if(travelAt(mid)<u)low=mid;else high=mid}
+    return (low+high)/2;
   }
-  for(let n=0;n<shrubs.length;n++){
-    const shrub=shrubs[n],base=V(shrub.x,terrainHeight(shrub.x,shrub.z),shrub.z);
-    const h=shrub.height,angle=shrub.phase*Math.PI*2;
-    const arrival=.02+((Math.atan2(shrub.x,shrub.z)-.65+Math.PI*4)%(Math.PI*2))/(Math.PI*2)*.38;
+  const shrubs=[];
+  for(let z=-13;z<=13;z++)for(let x=-13;x<=13;x++){
+    const px=x*2.05+(rand()-.5)*.90,pz=z*2.05+(rand()-.5)*.90;
+    if(Math.hypot(px,pz)>27)continue;
+    let distance=Infinity,nearest=0;
+    for(const sample of routeSamples){
+      const d=Math.hypot(px-sample.point.x,pz-sample.point.z);
+      if(d<distance){distance=d;nearest=sample.u}
+    }
+    // A narrow passage protects the lens; lower flowers lean over its edges.
+    if(distance<.82)continue;
+    const height=distance<2.0?.46+rand()*.38:.70+rand()*.85;
+    shrubs.push({x:px,z:pz,height,phase:rand(),
+      arrival:Math.max(0,Math.min(.67,timeAtTravel(nearest)-.34))});
+  }
+  for(const shrub of shrubs){
+    const base=V(shrub.x,terrainHeight(shrub.x,shrub.z),shrub.z);
+    const h=shrub.height,angle=shrub.phase*Math.PI*2,arrival=shrub.arrival;
     const top=base.clone().add(V((rand()-.5)*.25,h,0));
     const trunk=stem([base,base.clone().add(V(.1,h*.3,0)),top.clone().add(V(-.1,-h*.3,.1)),top],
-      .055,arrival,.15);
-    for(let j=0;j<5;j++){
-      const a=angle+j*2.39996,r=trunk.getPoint(.35+j*.105);
-      const e=base.clone().add(V(Math.sin(a)*(.95+rand()*.65),h*(.75+rand()*.45),Math.cos(a)*(.55+rand()*.55)));
-      const branch=stem([r,r.clone().add(V(Math.sin(a)*.3,.35,Math.cos(a)*.3)),e.clone().add(V(0,-.3,0)),e],
-        .023,arrival+.09+j*.007,.18);
-      flowersOn(branch,mobile?4:6,arrival+.20+j*.012);
-      const r2=branch.getPoint(.55),a2=a+.9,e2=r2.clone().add(V(Math.sin(a2)*.42,.26,Math.cos(a2)*.42));
-      const twig=stem([r2,r2.clone().add(V(0,.14,0)),e2.clone().add(V(0,-.13,0)),e2],.008,arrival+.20,.13);
-      flowersOn(twig,mobile?2:3,arrival+.31+j*.012);
+      .038,arrival,.075);
+    for(let j=0;j<4;j++){
+      const a=angle+j*Math.PI/2,r=trunk.getPoint(.32+j*.14),reach=1.08+rand()*.38;
+      const e=base.clone().add(V(Math.sin(a)*reach,h*(.88+rand()*.30),Math.cos(a)*reach));
+      const branch=stem([r,r.clone().add(V(Math.sin(a)*.4,.20,Math.cos(a)*.4)),e.clone().add(V(0,-.22,0)),e],
+        .016,arrival+.035+j*.008,.08);
+      flowersOn(branch,mobile?5:8,arrival+.10+j*.007);
+      const r2=branch.getPoint(.48),a2=a+.8,e2=r2.clone().add(V(Math.sin(a2)*.52,.16,Math.cos(a2)*.52));
+      const twig=stem([r2,r2.clone().add(V(0,.12,0)),e2.clone().add(V(0,-.1,0)),e2],.006,arrival+.09,.07);
+      flowersOn(twig,mobile?2:3,arrival+.135+j*.007);
+      const lowEnd=base.clone().add(V(Math.sin(a+.5)*1.0,.32+rand()*.24,Math.cos(a+.5)*1.0));
+      const lowRoot=trunk.getPoint(.12);
+      const lowBranch=stem([lowRoot,lowRoot.clone().add(V(0,.16,0)),lowEnd.clone().add(V(0,-.12,0)),lowEnd],
+        .008,arrival+.025,.09);
+      flowersOn(lowBranch,mobile?3:4,arrival+.09+j*.008);
     }
   }
   // Fine grass blades provide scale and blend each cluster into the land.
@@ -191,7 +216,7 @@ export async function createPeachGarden({reduced,onReady,onProgress,onFallback,o
       Object.assign(shader.uniforms,uniforms);
       shader.vertexShader='attribute float aStart;uniform float uBloom;\n'+shader.vertexShader;
       shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>',`
-        float opened=smoothstep(0.,1.,(uBloom-aStart)/.15);
+        float opened=smoothstep(0.,1.,(uBloom-aStart)/.10);
         vec3 transformed=position*opened;
       `);
     };
@@ -208,14 +233,28 @@ export async function createPeachGarden({reduced,onReady,onProgress,onFallback,o
   for(let i=0;i<antherGeometry.getAttribute('position').count;i++)detailColors.push(gold.r,gold.g,gold.b);
   detailedFlower.setAttribute('color',new T.Float32BufferAttribute(detailColors,3));
   const distantParts=[];
-  for(let j=0;j<5;j++)distantParts.push(new T.CircleGeometry(.135,6).translate(0,.15,0).rotateZ(j*Math.PI*2/5));
+  for(let j=0;j<5;j++){
+    const p=[],indices=[],c=[],U=3,W=2;
+    for(let u=0;u<=U;u++)for(let v=0;v<=W;v++){
+      const t=u/U,side=v/W*2-1,width=.14*Math.pow(Math.sin(Math.PI*t),.58);
+      p.push(side*width,.025+t*.27,.065*Math.sin(Math.PI*t)+.036*side*side*t-.015*t);
+      const shade=new T.Color().lerpColors(new T.Color('#d73b72'),new T.Color('#f6b7cd'),Math.pow(t,.55));
+      c.push(shade.r,shade.g,shade.b);
+      if(u<U&&v<W){const n=u*(W+1)+v;indices.push(n,n+1,n+W+1,n+1,n+W+2,n+W+1)}
+    }
+    const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(p,3));
+    g.setAttribute('color',new T.Float32BufferAttribute(c,3));g.setIndex(indices);g.computeVertexNormals();
+    distantParts.push(g.rotateZ(j*Math.PI*2/5));
+  }
   const distantFlower=merge(distantParts),distantColors=[];
-  const pink=new T.Color('#ee9cbb');
-  for(let i=0;i<distantFlower.getAttribute('position').count;i++)distantColors.push(pink.r,pink.g,pink.b);
+  for(const g of distantParts)distantColors.push(...g.toNonIndexed().getAttribute('color').array);
   distantFlower.setAttribute('color',new T.Float32BufferAttribute(distantColors,3));
+  const distantMaterial=growMaterial(new T.MeshLambertMaterial({
+    color:0xffd7e5,vertexColors:true,side:T.DoubleSide,emissive:0x210710
+  }),'peach-distant');
   const sectorMap=new Map(),flowerTiles=[];
   for(const flower of flowerData){
-    const key=Math.floor(flower.center.x/6)+','+Math.floor(flower.center.z/6);
+    const key=Math.floor(flower.center.x/4)+','+Math.floor(flower.center.z/4);
     if(!sectorMap.has(key))sectorMap.set(key,[]);
     sectorMap.get(key).push(flower);
   }
@@ -223,7 +262,7 @@ export async function createPeachGarden({reduced,onReady,onProgress,onFallback,o
   const budsGeometry=new T.OctahedronGeometry(.06,0);
   for(const sector of sectorMap.values()){
     const meshes=[];
-    for(const [base,material,offset] of [[detailedFlower,petalMaterial,0],[distantFlower,petalMaterial,0],[budsGeometry,budMaterial,-.13]]){
+    for(const [base,material,offset] of [[detailedFlower,petalMaterial,0],[distantFlower,distantMaterial,0],[budsGeometry,budMaterial,-.13]]){
       const geometry=base.clone();
       geometry.setAttribute('aStart',new T.InstancedBufferAttribute(new Float32Array(sector.map(f=>f.start+offset)),1));
       const mesh=new T.InstancedMesh(geometry,material,sector.length);
@@ -233,7 +272,8 @@ export async function createPeachGarden({reduced,onReady,onProgress,onFallback,o
       });
       mesh.computeBoundingSphere();tree.add(mesh);meshes.push(mesh);
     }
-    flowerTiles.push({meshes,center:meshes[0].boundingSphere.center.clone()});
+    flowerTiles.push({meshes,center:meshes[0].boundingSphere.center.clone(),
+      start:Math.min(...sector.map(f=>f.start))-.13,budEnd:Math.max(...sector.map(f=>f.start))+.10});
   }
 
   const starCount=mobile?400:750,starPos=[],starMeta=[];
@@ -279,7 +319,7 @@ export async function createPeachGarden({reduced,onReady,onProgress,onFallback,o
   const fallSeeds=Array.from({length:64},()=>[rand()*Math.PI*2,rand()*5,rand()]);
   falling.frustumCulled=false;scene.add(falling);
 
-  const INTRO=1.8,DURATION=23,SETTLE=1.2,END=INTRO+DURATION+SETTLE;
+  const INTRO=1.8,DURATION=28,SETTLE=2,END=INTRO+DURATION+SETTLE;
   let elapsed=0,lastTime=performance.now(),paused=false,finished=false,failed=false,raf=0,lastUI=-1;
   let orbitOffset=0,pointer=null,lastBurst=-100;
   function resize(){
@@ -290,16 +330,20 @@ export async function createPeachGarden({reduced,onReady,onProgress,onFallback,o
   function render(){
     const progress=Math.max(0,Math.min(1,(elapsed-INTRO)/(DURATION+SETTLE)));
     const growth=Math.max(0,Math.min(1,(elapsed-INTRO)/DURATION));
-    const turn=smooth(Math.min(1,(elapsed-INTRO)/DURATION));
-    const angle=.65+turn*Math.PI*2+orbitOffset;
-    const radius=22-10*smooth(growth);
-    const cameraY=6.6-2.6*smooth(growth)+Math.sin(turn*Math.PI)*1.1;
-    camera.position.set(Math.sin(angle)*radius,cameraY,Math.cos(angle)*radius);
-    camera.lookAt(0,1.3,0);camera.updateMatrixWorld();
+    const travel=travelAt(growth);
+    const eye=flightPath.getPointAt(travel),ahead=flightPath.getPointAt(Math.min(1,travel+.045));
+    let direction=ahead.clone().sub(eye);
+    if(direction.lengthSq()<.0001)direction=flightPath.getTangentAt(1);
+    direction.normalize().applyAxisAngle(V(0,1,0),orbitOffset);
+    const clearance=1.38+smooth((growth-.87)/.13)*.37;
+    const eyeGround=terrainHeight(eye.x,eye.z);
+    camera.position.set(eye.x,eyeGround+clearance,eye.z);
+    const look=eye.clone().addScaledVector(direction,4.0);
+    camera.lookAt(look.x,camera.position.y-.20-.55*smooth((growth-.88)/.12),look.z);camera.updateMatrixWorld();
     clock.value=reduced.matches?0:elapsed;
     bloom.value=growth;
     burstPower.value=reduced.matches?0:Math.max(0,1-(elapsed-lastBurst)/2);
-    tree.rotation.z=reduced.matches?0:Math.sin(elapsed*.45)*.003;
+    tree.rotation.z=0;
     const fallAmount=smooth((growth-.55)/.3);
     for(let i=0;i<fallSeeds.length;i++){
       const [a,phase,s]=fallSeeds[i],t=clock.value;
@@ -309,9 +353,10 @@ export async function createPeachGarden({reduced,onReady,onProgress,onFallback,o
     }
     falling.instanceMatrix.needsUpdate=true;
     for(const tile of flowerTiles){
-      const detail=tile.center.distanceTo(camera.position)<(mobile?12:16);
-      tile.meshes[0].visible=detail;tile.meshes[1].visible=!detail;
-      tile.meshes[2].visible=growth<.92;
+      const detail=tile.center.distanceTo(camera.position)<(mobile?6.5:8.5);
+      const active=growth>tile.start;
+      tile.meshes[0].visible=active&&detail;tile.meshes[1].visible=active&&!detail;
+      tile.meshes[2].visible=active&&growth<tile.budEnd;
     }
     renderer.render(scene,camera);
     const percent=Math.round(progress*100);

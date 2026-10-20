@@ -80,7 +80,7 @@ function updateProgress(p){
   if(p>=1)return;
   $('journey-label').textContent=p<.32?'Vùng đất nhỏ đang thức giấc':p<.76?'Từng cánh hoa đang nở vì bạn':'Gom ánh sao, gửi một lời thương';
   $('chapter').textContent=p<.6?'Một vòng dịu dàng.\nCả một trời hoa.':'Mong bạn luôn được\nnâng niu như thế.';
-  $('chapter').classList.toggle('visible',p>.20&&p<.42||p>.68&&p<.86);
+  $('chapter').classList.remove('visible');
 }
 let lastMotion=reduced.matches;
 function syncMotion(){
