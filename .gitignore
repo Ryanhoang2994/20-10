@@ -1,0 +1,10 @@
+node_modules/
+.sites-runtime/
+.sites-checkout/
+*.tar.gz
+*.zip
+.env
+.env.*
+!.env.example
+test-results/
+playwright-report/

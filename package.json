@@ -1,0 +1,12 @@
+{
+  "name": "mot-chut-thuong-20-10",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Thiệp hoa tương tác mừng ngày Phụ nữ Việt Nam 20/10",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node --check dist/app.js"
+  },
+  "engines": { "node": ">=20" }
+}
