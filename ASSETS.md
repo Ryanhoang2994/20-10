@@ -1,6 +1,14 @@
 # Nguồn tài nguyên
 
-## Cảnh hoa đào hiện tại
+## Cánh đồng cosmos hồng hiện tại
+
+- `cosmos-sunset.webp`: cánh đồng cosmos hồng dưới nắng hoàng hôn, ảnh AI theo tham chiếu mới do người dùng gửi. 1536 × 1024, dùng cho nền trời/cánh đồng xa, ảnh dự phòng và chia sẻ.
+- `cosmos-pink-atlas.webp`: bốn cụm cây cosmos hồng đậm, hồng nhạt và trắng, có alpha trong suốt thực, 1536 × 1024. Tạo bằng imagegen tích hợp; giữ alpha khi chuyển sang WebP.
+- Các cây là ảnh cắt nền đặt tại tọa độ 3D, vẽ bằng instancing và quay về phía camera. Hiệu ứng mọc từ gốc và gió chạy trên GPU. Đây là kỹ thuật billboard/2.5D, không phải mô hình cánh hoa 3D đầy đủ.
+- Ảnh AI mô phỏng chất ảnh chụp, không ghi lại một địa điểm thực. Toàn bộ tài nguyên được lưu cùng website; không gọi AI khi mở link.
+- `meadow-grass.webp` tiếp tục là chất liệu mặt đất. Các ảnh và thư viện cũ bên dưới được giữ trong bộ mã nguồn để bảo toàn lịch sử tài nguyên.
+
+## Cảnh hoa đào ở phiên bản trước
 
 - Toàn bộ cành gỗ, hoa năm cánh cong, nhụy, nụ và cánh hoa bay được dựng bằng hình học trong `dist/garden.js`. Ánh sáng và hạt lấp lánh được tính bằng Three.js/GLSL.
 - `peach-garden.webp`: ảnh chụp từ chính vùng đất hoa WebGL với thảm cỏ và đồi xa, 1440 × 900, ẩn giao diện trước khi chụp. Dùng làm ảnh dự phòng và ảnh chia sẻ. Không phải ảnh AI tạo riêng hoặc ảnh chụp cây thật.
