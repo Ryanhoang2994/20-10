@@ -1,12 +1,12 @@
 # Nở vì bạn · 20/10
 
-Một cánh đồng hoa 3D mọc lên dưới trời hoàng hôn. Camera lướt nhẹ qua hoa vàng, cam và hồng, sau đó lời chúc 20/10 **dành chung cho mọi cô gái** tự hiện ra.
+Một cánh đồng hoa mọc lên dưới trời hoàng hôn, với chất liệu hoa như ảnh chụp. Camera lướt nhẹ qua hoa vàng, cam và hồng, sau đó lời chúc 20/10 **dành chung cho mọi cô gái** tự hiện ra.
 
 **Website:** https://gui-ban-mot-doa-hoa-20-10.yvonne821952.chatgpt.site
 
 ## Trải nghiệm
 
-- Cả cánh đồng mọc dần trong khoảng 16 giây sau phần mở đầu.
+- Cả cánh đồng mọc dần trong khoảng 18 giây sau phần mở đầu.
 - Thân và lá vươn lên trước, cánh hoa bung ra sau, từ gần đến xa.
 - Camera lướt qua cánh đồng, phía xa có đồi núi và ánh hoàng hôn.
 - Lời chúc tự hiện khi cánh đồng nở xong; có thể đóng thiệp để ngắm hoa và chạm để đọc lại.
@@ -15,7 +15,7 @@ Một cánh đồng hoa 3D mọc lên dưới trời hoàng hôn. Camera lướt
 - Không nhập tên, không thu thập dữ liệu, không có tài khoản hay backend.
 - Chế độ giảm chuyển động hiển thị ngay cánh đồng và lời chúc. Thiết bị không có WebGL vẫn xem được lời chúc với ảnh cánh đồng thay thế.
 
-Phong cách hình ảnh lấy cảm hứng từ không gian hoa kỹ thuật số. Hiệu ứng là 3D được lập trình bằng Three.js, không gọi dịch vụ AI lúc người xem mở trang.
+Hình ảnh được tạo bằng imagegen tích hợp theo ảnh tham chiếu cánh đồng hoàng hôn của người dùng. Trải nghiệm dùng **ảnh nhiều lớp (2.5D)** với WebGL/Three.js: cảnh cỏ chuyển dần thành cánh đồng, các cụm hoa tiền cảnh vươn lên và đung đưa độc lập. Camera lia bằng parallax và thay đổi khung hình nhẹ. Không phải video quay thật hoặc cảnh 3D có thể xoay tự do; không gọi dịch vụ AI khi người xem mở trang.
 
 ## Chạy trên máy
 
@@ -39,7 +39,8 @@ node --check dist/app.js
 dist/
   index.html       Nội dung, bộ điều khiển và lời chúc
   style.css        Giao diện, responsive, chế độ giảm chuyển động
-  app.js           Cánh đồng hoa, camera, tương tác và chia sẻ
+  app.js           Điều khiển, lời chúc và chia sẻ
+  garden.js        Các lớp ảnh, hiệu ứng mọc, gió và camera
   assets/          Three.js, font, ảnh dự phòng, icon và giấy phép
 server.mjs         Server xem thử trên máy
 netlify.toml       Publish directory: dist
@@ -47,7 +48,7 @@ vercel.json        Output directory: dist
 ASSETS.md          Nguồn tài nguyên
 ```
 
-Trong `dist/app.js`, chỉnh `DURATION` để đổi thời gian hoa nở, `palette` để đổi màu hoa và `positionCamera` để chỉnh góc nhìn. Lời chúc nằm trực tiếp trong `dist/index.html`.
+Trong `dist/garden.js`, chỉnh `DURATION` để đổi thời gian hoa nở; `uTravel` và các hệ số parallax để chỉnh camera. Các texture chính là `meadow-empty.webp`, `meadow-real.webp` và `cosmos-atlas.webp`. Lời chúc nằm trực tiếp trong `dist/index.html`.
 
 ## Hosting
 
@@ -63,9 +64,10 @@ Netlify/Vercel là cấu hình để thuận tiện chuyển hosting; bản demo
 
 ## Kỹ thuật
 
-- Three.js 0.186.1, WebGLRenderer, InstancedMesh để giảm số lần vẽ.
-- Cánh hoa cosmos, thân, lá và cỏ dựng bằng hình học dùng chung; 2.900 cây trên màn hình lớn, 1.800 cây trên điện thoại.
-- Hoa nở theo từng lớp chiều sâu; camera và cây chuyển động nhẹ theo thời gian.
+- Three.js 0.186.1, WebGLRenderer và InstancedBufferGeometry; cảnh chỉ cần hai lượt vẽ.
+- 76 cụm hoa tiền cảnh trên màn hình lớn, 38 cụm trên điện thoại, mỗi cụm gồm nhiều bông; hậu cảnh là cánh đồng dày phủ kín.
+- Shader chạy hiệu ứng mọc và gió trên GPU mỗi khung hình. Camera dùng đường chuyển động bậc 5 có vận tốc và gia tốc về 0 ở hai đầu.
+- Không cập nhật hàng nghìn ma trận cây bằng JavaScript theo từng khung hình.
 - Tab ẩn không làm hành trình tiếp tục chạy; giới hạn mật độ điểm ảnh trên điện thoại.
 - Hỗ trợ bàn phím và Escape đóng lời chúc.
 

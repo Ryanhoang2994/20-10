@@ -1,7 +1,11 @@
 # Nguồn tài nguyên
 
-- Cánh đồng hoa 3D, thân, lá, cỏ, các lớp đồi núi, mặt trời và phấn hoa: dựng bằng mã nguồn trong `dist/app.js`, lấy cảm hứng từ ảnh cánh đồng hoa lúc hoàng hôn do người dùng cung cấp.
-- `meadow.webp`: ảnh chụp cảnh 3D của chính website, dùng cho thiết bị không có WebGL và hình xem trước khi chia sẻ.
+- `meadow-real.webp`: cánh đồng cosmos dày dưới hoàng hôn, tạo bằng imagegen tích hợp theo màu sắc, ánh sáng và bố cục ảnh tham chiếu do người dùng gửi. Dùng cho lớp cảnh chính, dự phòng và hình chia sẻ.
+- `meadow-empty.webp`: chỉnh sửa từ ảnh trên bằng imagegen để loại bỏ hoa, giữ góc chụp, trời, mặt trời, đồi núi và rừng; dùng cho lúc mở đầu.
+- `cosmos-atlas.webp`: bốn cụm cosmos vàng, cam, hồng và vàng/cam được tạo bằng imagegen, có alpha thực; dùng cho các lớp hoa vươn lên và đung đưa riêng.
+- Các ảnh AI mô phỏng ảnh chụp, không phải ảnh chụp tại địa điểm thực. Toàn bộ ba ảnh được lưu cục bộ và chuyển định dạng WebP; không gọi AI lúc mở web.
+- `meadow.webp`: ảnh chụp cảnh 3D của phiên bản trước, được giữ lại trong bộ nguồn; phiên bản hiện tại không dùng.
+- Prompt và quy trình: xem `IMAGE-PROMPTS.md`.
 - Three.js 0.186.1: thư viện chính thức từ npm/jsDelivr; MIT License đính kèm `dist/assets/THREE-LICENSE.txt`. Bản `three.core.js` là nội dung minified chính thức, đặt tên phù hợp với đường import của Three.js.
 - Font Lora và Be Vietnam Pro: Google Fonts, lưu cục bộ; SIL Open Font License đính kèm.
 - Icon flower, heart và favicon: Phosphor Icons, MIT License đính kèm. Icon heart được giữ trong bộ tài nguyên.
