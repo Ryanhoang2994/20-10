@@ -1,6 +1,6 @@
-# Nở vì em · Cánh đồng hoa cosmos · 20/10
+# Nở vì em · Vườn hoa đào lung linh · 20/10
 
-Một cánh đồng hoa cosmos hồng dưới hoàng hôn, dựa trên ảnh tham chiếu của người dùng: cánh mỏng có vân, thân xanh thanh mảnh, lá tơi, hoa hồng đậm xen hồng nhạt và trắng. Nắng vàng ở phía trái, trời xanh tím và mây hồng.
+Một vườn hoa đào hồng dưới hoàng hôn, dựa trên ảnh tham chiếu của người dùng: hoa năm cánh, nhụy dài mảnh, cành gỗ nâu, nụ hồng và một ít lá non; sắc hồng phấn xen hồng đậm. Nắng vàng ở phía trái, trời xanh tím và mây hồng.
 
 **Website:** https://gui-ban-mot-doa-hoa-20-10.yvonne821952.chatgpt.site/
 
@@ -8,9 +8,11 @@ Một cánh đồng hoa cosmos hồng dưới hoàng hôn, dựa trên ảnh tha
 
 - Camera bay thấp theo đường uốn nhẹ dài hơn 60 m giữa các lớp hoa gần và xa.
 - Các cây vươn lên khi camera đến gần và đung đưa nhẹ theo gió.
+- 1.250/750 đốm sáng vàng–hồng và 130/70 cánh hoa rơi trên máy tính/điện thoại. Ánh sao tập trung quanh camera suốt hành trình.
+- Nút mở thiệp có vệt sáng nhẹ; chế độ giảm chuyển động tắt các chuyển động.
 - Hành trình khoảng 32 giây: mở đầu 1,8 giây, di chuyển 28 giây, dừng 2 giây rồi hiện thiệp.
 - **Chạm nhận yêu thương** mở thiệp 20/10, dùng cách gọi “em”. **Nhận thêm yêu thương** hiển thị sáu lời chúc.
-- **Thêm chút lấp lánh** tạo hạt sáng. Kéo nhẹ trên cảnh để đổi góc nhìn.
+- **Thêm chút lấp lánh** và chạm trên cảnh tạo một chùm ánh sao tỏa ra rồi tắt dần. Kéo nhẹ trên cảnh để đổi góc nhìn.
 - Nút ngắm lại hoa và chia sẻ nằm trong thiệp. Màn hình chính không có thanh điều khiển hay chữ hướng dẫn ở đáy.
 - Hỗ trợ giảm chuyển động; thiết bị không có WebGL hiển thị ảnh cánh đồng và thiệp tương tác.
 
@@ -41,8 +43,8 @@ node --check dist/garden.js
 - `dist/app.js`: mở thiệp, sáu lời chúc, chia sẻ và xem lại.
 - `dist/garden.js`: bố trí cây, camera, gió, mọc hoa và ánh sáng lấp lánh.
 - `dist/style.css`: giao diện responsive và chế độ giảm chuyển động.
-- `dist/assets/cosmos-sunset.webp`: nền cánh đồng, ảnh dự phòng và ảnh chia sẻ.
-- `dist/assets/cosmos-pink-atlas.webp`: bốn cụm cây cosmos với alpha trong suốt.
+- `dist/assets/peach-sunset-glow.webp`: nền cánh đồng, ảnh dự phòng và ảnh chia sẻ.
+- `dist/assets/peach-blossom-atlas.webp`: bốn cụm cây hoa đào với alpha trong suốt.
 - `ASSETS.md`, `IMAGE-PROMPTS.md`: nguồn tài nguyên và prompt đã sử dụng.
 
 ## Hosting

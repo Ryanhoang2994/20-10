@@ -1,6 +1,14 @@
 # Nguồn tài nguyên
 
-## Cánh đồng cosmos hồng hiện tại
+## Vườn hoa đào lung linh hiện tại
+
+- `peach-sunset-glow.webp`: nền vườn hoa đào năm cánh dưới hoàng hôn, sửa bằng imagegen từ nền cosmos trước để thay toàn bộ hoa ở xa và gần. 1536 × 1024, dùng cho nền cảnh, ảnh dự phòng và chia sẻ.
+- `peach-blossom-atlas.webp`: bốn cụm đào trên cành gỗ mảnh, nụ hồng, lá non và hoa năm cánh có nhụy dài. 1536 × 1024, alpha trong suốt thực; tạo bằng imagegen tích hợp, giữ alpha khi chuyển sang WebP.
+- Các cụm đào dùng ảnh cắt nền trong không gian 3D (billboard/2.5D), có mọc từ gốc và gió. Cánh hoa rơi được dựng bằng hình học, không dùng ảnh cắt từ atlas.
+- 1.250/750 hạt sáng, 130/70 cánh hoa bay và 180/100 hạt ánh sao khi chạm (máy tính/điện thoại). Ánh sao khi chạm tỏa từ vị trí được chọn và tắt dần trong 2,6 giây. Chế độ giảm chuyển động giữ cảnh tĩnh.
+- Ảnh được tạo bằng AI, không phải ảnh chụp một địa điểm thực. Toàn bộ tài nguyên nằm cùng website; không gọi AI khi người nhận mở link.
+
+## Cánh đồng cosmos ở phiên bản trước
 
 - `cosmos-sunset.webp`: cánh đồng cosmos hồng dưới nắng hoàng hôn, ảnh AI theo tham chiếu mới do người dùng gửi. 1536 × 1024, dùng cho nền trời/cánh đồng xa, ảnh dự phòng và chia sẻ.
 - `cosmos-pink-atlas.webp`: bốn cụm cây cosmos hồng đậm, hồng nhạt và trắng, có alpha trong suốt thực, 1536 × 1024. Tạo bằng imagegen tích hợp; giữ alpha khi chuyển sang WebP.
