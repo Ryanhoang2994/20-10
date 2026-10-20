@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071914">
+  <meta name="description" content="Một đường hoa nở dần, một lời chúc dành cho mọi cô gái. Chúc mừng ngày Phụ nữ Việt Nam 20/10.">
+  <meta property="og:title" content="Có một đường hoa nở vì bạn · 20/10">
+  <meta property="og:description" content="Đi theo những đóa hoa. Một lời chúc đang đợi bạn ở cuối con đường.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:image" content="https://gui-ban-mot-doa-hoa-20-10.yvonne821952.chatgpt.site/assets/bouquet.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Nở vì bạn · Chúc mừng 20/10</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/fonts.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="modulepreload" href="./assets/three.module.min.js">
+  <script type="module" src="./app.js"></script>
+</head>
+<body data-stage="loading">
+  <main class="experience" id="experience">
+    <div class="scene" id="scene" aria-label="Đường hoa 3D đang dần nở" role="img"></div>
+    <div class="atmosphere" aria-hidden="true"></div>
+    <header class="masthead">
+      <a class="wordmark" href="./" aria-label="Nở vì bạn, bắt đầu lại">nở<span>vì bạn.</span></a>
+      <span class="occasion">20 / 10 <span>NGÀY PHỤ NỮ VIỆT NAM</span></span>
+    </header>
+
+    <div class="intro" id="intro">
+      <p class="kicker">DÀNH CHO MỌI CÔ GÁI</p>
+      <h1>Có những điều đẹp đẽ<br>đang nở <em>vì bạn.</em></h1>
+      <p class="intro-note" id="intro-note">Đi theo những đóa hoa. Có một lời chúc đang đợi bạn.</p>
+    </div>
+
+    <div class="chapter" id="chapter" aria-hidden="true"></div>
+    <div class="final-invitation" id="final-invitation" hidden>
+      <p class="kicker">BÔNG HOA NÀY DÀNH CHO BẠN</p>
+      <button class="bloom-button" id="open-wish" type="button">Chạm vào hoa<span>để nhận một lời thương <span aria-hidden="true">↗</span></span></button>
+    </div>
+
+    <footer class="controls">
+      <div class="journey">
+        <span id="journey-label">Một chút dịu dàng đang thức giấc</span>
+        <div class="progress-track" role="progressbar" aria-label="Tiến trình hoa nở" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track"><span id="progress-fill"></span></div>
+      </div>
+      <div class="control-buttons">
+        <button class="quiet-button" id="pause-button" type="button" disabled>Tạm dừng</button>
+        <button class="quiet-button" id="skip-button" type="button">Mở lời chúc <span aria-hidden="true">↗</span></button>
+        <button class="quiet-button" id="replay-button" type="button" hidden>Xem hoa nở lại <span aria-hidden="true">↺</span></button>
+      </div>
+    </footer>
+    <div class="loading" id="loading" role="status"><span class="loading-seed" aria-hidden="true"></span><span>Đang ươm một chút yêu thương…</span></div>
+    <div class="fallback" id="fallback" hidden><img src="./assets/bouquet.webp" alt="Bó hoa hồng phấn và trắng dành tặng mọi cô gái" width="1536" height="1536"></div>
+  </main>
+
+  <dialog class="wish-dialog" id="wish-dialog" aria-labelledby="wish-title">
+    <button class="close-button" id="close-wish" type="button" aria-label="Đóng lời chúc">×</button>
+    <div class="card-flower" aria-hidden="true"><img src="./assets/flower.svg" width="38" height="38" alt=""></div>
+    <p class="kicker">CHÚC MỪNG NGÀY PHỤ NỮ VIỆT NAM</p>
+    <h2 id="wish-title">Gửi mọi cô gái,<br><em>hãy nở theo cách của mình.</em></h2>
+    <div class="wish-body">
+      <p>Chúc bạn một ngày 20/10 thật nhiều niềm vui, bình yên và yêu thương.</p>
+      <p>Mong bạn luôn tự tin là chính mình, đủ can đảm theo đuổi điều mình muốn, và đủ dịu dàng để yêu thương cả những ngày chưa hoàn hảo.</p>
+      <p>Bạn không cần giống một bông hoa nào khác.<br>Chỉ cần là bạn, đã là một điều rất đẹp.</p>
+    </div>
+    <p class="wish-signature">Không chỉ hôm nay. Mà là mỗi ngày.</p>
+    <div class="wish-actions"><button class="share-button" id="share-button" type="button">Gửi chút yêu thương này <span aria-hidden="true">↗</span></button></div>
+    <p id="share-status" class="share-status" role="status" aria-live="polite"></p>
+    <input class="manual-link" id="manual-link" aria-label="Link để sao chép" readonly hidden>
+  </dialog>
+  <noscript><div class="noscript"><h1>Chúc mừng ngày 20/10</h1><p>Chúc mọi cô gái luôn tự tin, bình yên và được yêu thương. Bạn không cần giống một bông hoa nào khác. Chỉ cần là bạn, đã là một điều rất đẹp.</p><p>Bật JavaScript để xem đường hoa nở.</p></div></noscript>
+</body>
+</html>

@@ -1,0 +1,87 @@
+@charset "UTF-8";
+:root{color-scheme:dark;--night:#071914;--cream:#f6eee3;--soft:#afc4b5;--pink:#efb4c3;--sans:"Be Vietnam Pro",Arial,sans-serif;--serif:"Lora",Georgia,serif}
+*{box-sizing:border-box}
+body{margin:0;color:var(--cream);background:var(--night);font:400 13px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden}
+button,a{-webkit-tap-highlight-color:transparent}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.35;cursor:wait}
+button:focus-visible,a:focus-visible{outline:2px solid var(--pink);outline-offset:7px}
+button{color:inherit}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+::selection{background:#cfa0b7;color:#071914}
+.experience{position:relative;min-height:100dvh;height:100dvh;overflow:hidden;isolation:isolate}
+.scene,.scene canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scene{z-index:-3;background:radial-gradient(ellipse at 50% 65%,#18372b 0%,#081c17 40%,#030d0c 100%)}
+.scene canvas{outline:0}
+.atmosphere{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,#03110c44 0%,transparent 26%,transparent 62%,#020d0bb8 100%);box-shadow:inset 0 0 130px #020c0955}
+.masthead{position:absolute;z-index:4;top:0;left:0;right:0;padding:33px 48px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.wordmark{font:italic 28px/1 var(--serif);letter-spacing:-1.4px;white-space:nowrap}
+.wordmark>span{font:400 11px/1 var(--sans);letter-spacing:0;margin-left:8px;color:#c7d3c8}
+.occasion{display:flex;align-items:center;gap:18px;font:400 16px var(--serif);letter-spacing:3px}
+.occasion>span{font:400 8px var(--sans);letter-spacing:2px;color:#b2c4b7;border-left:1px solid #687f6d66;padding-left:18px}
+.intro{position:absolute;top:24%;width:100%;text-align:center;padding:0 24px;pointer-events:none;transition:opacity 1.5s,transform 1.5s}
+.kicker{font-size:9px;font-weight:500;letter-spacing:3px;color:#adc4b5;margin:0 0 24px}
+h1{font:400 clamp(32px,4vw,58px)/1.42 var(--sans);letter-spacing:-1.7px;margin:0 0 23px}
+h1 em{font:italic 1.1em var(--serif);color:var(--pink)}
+.intro-note{font-size:11px;color:#a9bfaf;line-height:1.8}
+body[data-stage="growing"] .intro,body[data-stage="ready"] .intro{opacity:0;transform:translateY(-18px)}
+.chapter{position:absolute;left:7.5%;top:37%;font:italic clamp(22px,2.7vw,37px)/1.5 var(--serif);color:#ece6da;max-width:290px;pointer-events:none;opacity:0;transform:translateY(12px);transition:opacity 1.2s,transform 1.2s;text-shadow:0 3px 20px #03110b}
+.chapter.visible{opacity:1;transform:translateY(0)}
+.chapter.right{left:auto;right:7.5%;text-align:right}
+.final-invitation{position:absolute;bottom:18%;left:50%;transform:translateX(-50%);width:90%;text-align:center;animation:invite-in 1.5s both}
+.final-invitation>.kicker{font-size:8px;letter-spacing:2.5px;margin-bottom:13px}
+.bloom-button{border:0;background:transparent;font:italic 35px/1.4 var(--serif);padding:10px 24px;color:#f1d9de;transition:color .25s}
+.bloom-button>span{display:block;font:400 10px/1.7 var(--sans);letter-spacing:.5px;color:#b6cab9;margin-top:7px}
+.bloom-button>span>span{padding-left:8px}
+.bloom-button:hover{color:white}
+.controls{position:absolute;bottom:0;left:0;right:0;z-index:4;display:flex;align-items:flex-end;justify-content:space-between;padding:30px 48px 35px;gap:28px}
+.journey{width:260px}
+.journey>span{display:block;color:#9db7a6;font-size:9px;letter-spacing:.4px;min-height:17px;margin-bottom:12px}
+.progress-track{height:1px;background:#c1d5c026;overflow:hidden}
+.progress-track>span{display:block;height:100%;width:100%;background:#c9aaa8;transform:scaleX(0);transform-origin:left}
+.control-buttons{display:flex;gap:25px;align-items:center}
+.quiet-button{background:transparent;border:0;padding:9px 0;color:#afc7b8;font-size:10px;white-space:nowrap}
+.quiet-button:hover{color:#fff0e8}
+.quiet-button>span{margin-left:9px}
+.loading{position:absolute;z-index:5;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;background:var(--night);color:#b8c9b9;font-size:11px;transition:opacity .8s}
+.loading.loaded{opacity:0;pointer-events:none}
+.loading-seed{height:18px;width:12px;border-radius:80% 0 80% 0;background:#d9b4bd;box-shadow:0 0 25px #c8b3a944;animation:breathe 1.5s infinite alternate}
+.fallback{position:absolute;inset:18% 15% 25%;z-index:-2}
+.fallback img{width:100%;height:100%;object-fit:contain;mask-image:radial-gradient(ellipse,#000 35%,transparent 70%)}
+body[data-stage="fallback"] .intro{top:15%;opacity:0}
+.wish-dialog{position:fixed;margin:auto;padding:50px 64px 35px;width:620px;max-width:calc(100% - 36px);max-height:calc(100dvh - 40px);border:1px solid #b7c4a82e;border-radius:16px;background:linear-gradient(150deg,#15362d,#0b211c 75%);color:var(--cream);box-shadow:0 35px 130px #0007;text-align:center;overflow:auto}
+.wish-dialog::backdrop{background:#03110ac7;backdrop-filter:blur(13px)}
+.wish-dialog[open]{animation:invite-in .6s both}
+.close-button{position:absolute;top:13px;right:15px;height:40px;width:40px;border:0;background:transparent;font:300 29px var(--sans);color:#a3bbab}
+.close-button:hover{color:white}
+.card-flower{margin:0 auto 22px;width:38px;filter:brightness(0) saturate(100%) invert(83%) sepia(21%) saturate(383%) hue-rotate(296deg) brightness(96%) contrast(95%)}
+.card-flower img{display:block}
+.wish-dialog>.kicker{font-size:8px;letter-spacing:1.7px;margin-bottom:20px}
+.wish-dialog h2{font:400 28px/1.5 var(--serif);letter-spacing:-.5px;margin:0 0 25px}
+.wish-dialog h2 em{font-weight:400;color:var(--pink)}
+.wish-body{color:#b8ccbe;font-size:12px;line-height:1.95}
+.wish-body p{margin:0 0 17px}
+.wish-signature{font:italic 16px/1.7 var(--serif);color:#e2c2c5;margin:25px 0 26px}
+.share-button{border:1px solid #b2bba54d;background:#b9c8ae0b;border-radius:4px;padding:13px 20px;font-size:10px;transition:background .2s;min-height:46px;color:#e1dbcf}
+.share-button:hover{background:#b9c8ae1b}
+.share-button span{padding-left:18px}
+.share-status{font-size:10px;line-height:1.6;color:#adc2af;min-height:16px;margin:12px 0 0}
+.manual-link{width:100%;padding:12px;background:#071914;border:1px solid #607b67;color:white;font-size:12px}
+.noscript{position:fixed;z-index:10;inset:0;background:#071914;display:grid;align-content:center;padding:30px;max-width:100%;text-align:center}
+.noscript h1{font-size:30px}
+.noscript p{max-width:540px;margin:20px auto}
+@keyframes breathe{to{opacity:.4;transform:translateY(-5px) rotate(12deg)}}
+@keyframes invite-in{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+@media(max-width:767px){
+ .masthead{padding:26px 24px}.wordmark{font-size:25px}.wordmark>span{font-size:10px}.occasion{font-size:15px;letter-spacing:2px}.occasion>span{display:none}
+ .intro{top:24%;padding:0 20px}.kicker{font-size:8px;letter-spacing:2.2px;margin-bottom:24px}h1{font-size:clamp(27px,6.5vw,43px);letter-spacing:-.8px;line-height:1.5}.intro-note{font-size:10px;max-width:260px;margin:0 auto}
+ .chapter,.chapter.right{left:24px;right:24px;top:19%;font-size:25px;text-align:center;max-width:none}
+ .controls{padding:23px 24px max(25px,env(safe-area-inset-bottom));gap:20px;align-items:flex-end}.journey{width:145px}.journey>span{font-size:8px;line-height:1.65;max-width:150px;margin-bottom:10px}.control-buttons{gap:15px}.quiet-button{font-size:9px}.quiet-button>span{margin-left:5px}
+ .final-invitation{bottom:19%}.final-invitation>.kicker{font-size:7px;letter-spacing:1.8px}.bloom-button{font-size:31px}.bloom-button>span{font-size:9px}
+ .wish-dialog{padding:43px 25px 25px;border-radius:12px;max-width:calc(100% - 28px)}.wish-dialog h2{font-size:25px}.wish-dialog>.kicker{font-size:7px;letter-spacing:1.15px}.wish-body{font-size:11px;line-height:1.9}.wish-signature{font-size:14px}.card-flower{margin-bottom:18px}.close-button{top:7px;right:7px}
+}
+@media(max-width:360px){.controls{padding-left:18px;padding-right:18px;gap:12px}.control-buttons{gap:10px}.journey{width:120px}.quiet-button{font-size:8px}.masthead{padding:24px 20px}.wish-dialog h2{font-size:22px}.wish-dialog{padding-left:22px;padding-right:22px}}
+@media(max-height:600px) and (min-width:768px){.masthead{padding-top:22px}.intro{top:20%}h1{font-size:34px}.final-invitation{bottom:13%}.controls{padding-bottom:20px}.bloom-button{font-size:27px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.intro{opacity:0}.loading-seed{animation:none}}
